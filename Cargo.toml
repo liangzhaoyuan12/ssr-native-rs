@@ -1,0 +1,94 @@
+[package]
+name = "ssr-native-rs"
+version = "0.1.0"
+edition = "2024"
+description = "ShadowsocksR-native - Pure Rust port of ssr-n (ShadowsocksR proxy)"
+license = "GPL-3.0-only"
+repository = "https://github.com/anomalyco/ssr-native-rs"
+
+[lib]
+name = "ssr_native_rs"
+path = "src/lib.rs"
+
+[[bin]]
+name = "ssr-client"
+path = "src/bin/ssr-client.rs"
+
+[[bin]]
+name = "ssr-server"
+path = "src/bin/ssr-server.rs"
+
+[dependencies]
+# Async runtime (replaces libuv)
+tokio = { version = "1", features = ["full"] }
+
+# Serialization (replaces json-c)
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+# CLI (replaces getopt)
+clap = { version = "4", features = ["derive"] }
+
+# Logging (replaces dump_info)
+log = "0.4"
+env_logger = "0.11"
+
+# Random
+rand = "0.8"
+
+# --- Pure Rust Crypto (replaces mbedTLS + libsodium) ---
+
+# Cipher traits
+cipher = "0.4"
+
+# Block ciphers
+aes = "0.8"
+camellia = "0.1"
+blowfish = "0.9"
+cast5 = "0.11"
+des = "0.8"
+
+# Stream ciphers
+rc4 = "0.1"
+chacha20 = "0.9"
+salsa20 = "0.10"
+
+# Block cipher modes
+cbc = "0.1"
+cfb-mode = "0.8"
+ctr = "0.9"
+
+# AEAD
+aes-gcm = "0.10"
+chacha20poly1305 = "0.10"
+
+# Hash functions
+md-5 = "0.10"
+sha-1 = "0.10"
+sha2 = "0.10"
+
+# MAC and key derivation
+hmac = "0.12"
+hkdf = "0.12"
+
+# Type-level integers (for rc4 generic)
+typenum = "1"
+
+# --- TLS (replaces mbedTLS + uv-mbed) ---
+rustls = { version = "0.23", features = ["ring"] }
+tokio-rustls = "0.26"
+rustls-pki-types = "1"
+webpki-roots = "0.26"
+
+# --- Utilities ---
+percent-encoding = "2"
+httparse = "1"
+bloomfilter = "1"
+base64 = "0.22"
+crc32fast = "1"
+rlimit = "0.10"
+
+[features]
+default = ["ssr-client", "ssr-server"]
+ssr-client = []
+ssr-server = []
