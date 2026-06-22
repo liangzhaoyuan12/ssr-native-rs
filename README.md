@@ -1,5 +1,7 @@
 # ssr-native-rs
 
+[中文翻译](./README_CN.md)
+
 A pure Rust port of [ssr-n (ShadowsocksR-native)](https://github.com/ShadowsocksR-Live/shadowsocksr-native).  
 Provides a SOCKS5 proxy client and SSR server with full feature parity.
 
